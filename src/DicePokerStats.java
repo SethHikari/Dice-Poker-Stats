@@ -72,26 +72,6 @@ public class DicePokerStats {
 				+ ((double) doubleCount / (double) mTotalRolls) * 100d + " %");
 	}
 
-	/**
-	 * check to see if the roll has any doubles
-	 * 
-	 * @param roll
-	 *            a double array, any size of dice rolls, lol any dice too
-	 * @return whether it contains a double
-	 */
-	/*private static boolean hasDouble(int[] roll) {
-		int size = roll.length;
-
-		for (int i = 0; i < size; i++) {
-			for (int a = i + 1; a < size; a++) {
-				if (roll[i] == roll[a]) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}*/
-	
 	private static void statsOfTriples(List<int[]> rollList) {
 		long count = 0;
 		for (int[] roll : rollList) {
@@ -131,25 +111,6 @@ public class DicePokerStats {
 				+ ((double) count / (double) mTotalRolls) * 100d + " %");
 	}
 	
-	/*private static boolean hasTriple( int [] array ) {
-	      Map<Integer, Integer > map = new HashMap<Integer, Integer>();
-	      int count;
-	      for ( int index = 0; index < array.length; index++ ) {
-	         Integer total = map.get(array[ index ]);
-	         if ( total == null ) {
-	            count = 1;
-	         }
-	         else {
-	            count = total.intValue() + 1;
-	            if ( count >= 3 ) {
-	               return true;
-	            }
-	         }
-	         map.put( array[ index ], count );
-	      }
-
-	      return false;
-	   }*/
 	 
 	 private static boolean hasMultiplesOf(int[] roll,int amount) {
 		    for (int i = 0; i < roll.length; i++){
