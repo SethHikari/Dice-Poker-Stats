@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DicePokerStats {
@@ -13,7 +14,7 @@ public class DicePokerStats {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Rolling 5 dice for you...");
-		List<int[]> allRolls = roll5Dice();
+		List<List<Integer>> allRolls = roll5Dice();
 		statsOfDoubles(allRolls);
 		statsOfTriples(allRolls);
 		statsOf4OfAKind(allRolls);
@@ -26,10 +27,10 @@ public class DicePokerStats {
 	 * 
 	 * @return list of all possible dice rolls
 	 */
-	private static List<int[]> roll5Dice() {
+	private static List<List<Integer>> roll5Dice() {
 		long countPossibleRolls = 0;
 		// create a list to keep the dice rolls in
-		List<int[]> rollList = new ArrayList<int[]>();
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
 
 		// loop through every possible roll
 		for (int dice1 = 1; dice1 <= 6; dice1++) {
@@ -39,8 +40,9 @@ public class DicePokerStats {
 						for (int dice5 = 1; dice5 <= 6; dice5++) {
 							// add to the list a new double array of all the
 							// dice so far
-							rollList.add(new int[] { dice1, dice2, dice3,
-									dice4, dice5 });
+							List<Integer> roll = Arrays.asList(dice1, dice2, dice3,
+									dice4, dice5);
+							rollList.add(roll);
 							countPossibleRolls++;
 						}
 					}
@@ -56,12 +58,12 @@ public class DicePokerStats {
 	/**
 	 * counts the amount of doubles in the whole list and prints the output
 	 * 
-	 * @param rollList
+	 * @param allRolls
 	 *            a double array of rolls, and size ok
 	 */
-	private static void statsOfDoubles(List<int[]> rollList) {
+	private static void statsOfDoubles(List<List<Integer>> allRolls) {
 		long doubleCount = 0;
-		for (int[] roll : rollList) {
+		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 2)) {
 				doubleCount++;
 			}
@@ -72,9 +74,9 @@ public class DicePokerStats {
 				+ ((double) doubleCount / (double) mTotalRolls) * 100d + " %");
 	}
 
-	private static void statsOfTriples(List<int[]> rollList) {
+	private static void statsOfTriples(List<List<Integer>> allRolls) {
 		long count = 0;
-		for (int[] roll : rollList) {
+		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 3)) {
 				count++;
 			}
@@ -85,9 +87,9 @@ public class DicePokerStats {
 				+ ((double) count / (double) mTotalRolls) * 100d + " %");
 	}
 	
-	private static void statsOf4OfAKind(List<int[]> rollList) {
+	private static void statsOf4OfAKind(List<List<Integer>> allRolls) {
 		long count = 0;
-		for (int[] roll : rollList) {
+		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 4)) {
 				count++;
 			}
@@ -98,9 +100,9 @@ public class DicePokerStats {
 				+ ((double) count / (double) mTotalRolls) * 100d + " %");
 	}
 	
-	private static void statsOf5OfAKind(List<int[]> rollList) {
+	private static void statsOf5OfAKind(List<List<Integer>> allRolls) {
 		long count = 0;
-		for (int[] roll : rollList) {
+		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 5)) {
 				count++;
 			}
@@ -112,12 +114,12 @@ public class DicePokerStats {
 	}
 	
 	 
-	 private static boolean hasMultiplesOf(int[] roll,int amount) {
-		    for (int i = 0; i < roll.length; i++){
+	 private static boolean hasMultiplesOf(List<Integer> roll,int amount) {
+		    for (int i = 0; i < roll.size(); i++){
 		        int duplicates = 0;
 
-		        for (int j = i+1; j < roll.length; j++){
-		            if (roll[i] == roll[j]) {
+		        for (int j = i+1; j < roll.size(); j++){
+		            if (roll.get(i) == roll.get(j)) {
 		                duplicates++;
 		                if (duplicates >= amount - 1) return true;
 		            }
