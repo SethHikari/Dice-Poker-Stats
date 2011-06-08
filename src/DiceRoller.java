@@ -133,9 +133,9 @@ public class DiceRoller {
 	public void statsOf2Pairs(List<List<Integer>> allRolls) {
 		long count = 0;
 		long debug = 0;
-		List<List<Integer>> rolls = new ArrayList<List<Integer>>();
-		rolls = allRolls;
-		for (List<Integer> roll : rolls) {
+		List<List<Integer>> rolls = new ArrayList<List<Integer>>(allRolls);
+		for (List<Integer> rollToCopy : rolls) {
+			List<Integer> roll = new ArrayList<Integer>(rollToCopy);
 			if(roll.size() < 5) {
 				debug++;
 			}
@@ -155,8 +155,10 @@ public class DiceRoller {
 	public void statsOfFullHouse(List<List<Integer>> allRolls) {
 		long count = 0;
 		long debug = 0;
-		for (List<Integer> roll : allRolls) {
-			if(roll.size() < 3) {
+		List<List<Integer>> rolls = new ArrayList<List<Integer>>(allRolls);
+		for (List<Integer> rollToCopy : rolls) {
+			List<Integer> roll = new ArrayList<Integer>(rollToCopy);
+			if(roll.size() < 5) {
 				debug++;
 			}
 			if (hasMultiplesOf(roll, 3)) {
