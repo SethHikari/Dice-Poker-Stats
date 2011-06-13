@@ -30,7 +30,16 @@ public class DiceRoller {
 	private long m2PairPossible;
 
 	public DiceRoller() {
-		mRollList = rollDice();
+		mRollList = roll5Dice();
+	}
+
+	public DiceRoller(int dice1, int dice2) {
+		List<List<Integer>> roll3List = roll3Dice();
+		for (List<Integer> roll : roll3List){
+			roll.add(dice1);
+			roll.add(dice2);
+		}
+		mRollList = roll3List;
 	}
 
 	/**
@@ -39,7 +48,7 @@ public class DiceRoller {
 	 * 
 	 * @return list of all possible dice rolls
 	 */
-	protected List<List<Integer>> rollDice() {
+	protected List<List<Integer>> roll5Dice() {
 		long countPossibleRolls = 0;
 		// create a list to keep the dice rolls in
 		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
@@ -71,6 +80,33 @@ public class DiceRoller {
 		return rollList;
 	}
 
+	protected List<List<Integer>> roll3Dice() {
+		long countPossibleRolls = 0;
+		// create a list to keep the dice rolls in
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
+
+		// loop through every possible roll
+		for (int dice3 = 1; dice3 <= 6; dice3++) {
+			for (int dice4 = 1; dice4 <= 6; dice4++) {
+				for (int dice5 = 1; dice5 <= 6; dice5++) {
+					// add to the list a new double array of all the
+					// dice so far
+					List<Integer> roll = new ArrayList<Integer>();
+					roll.add(dice3);
+					roll.add(dice4);
+					roll.add(dice5);
+					rollList.add(roll);
+					countPossibleRolls++;
+				}
+			}
+		}
+
+		mTotalPossibleRolls = countPossibleRolls;
+		System.out.println("The amount of possible dice rolls: "
+				+ countPossibleRolls);
+		return rollList;
+	}
+
 	public void printAllStats() {
 		statsOf5OfAKind(mRollList);
 		statsOf4OfAKind(mRollList);
@@ -90,12 +126,11 @@ public class DiceRoller {
 		}
 		m5KindPossible = count;
 		System.out
-				.println("The amount of 5 of a kind in all the rolls possible: "
+				.println("\nThe amount of 5 of a kind in all the rolls possible: "
 						+ m5KindPossible);
-		System.out
-				.println("So the chance of rolling 5 of a kind is: "
-						+ ((double) m5KindPossible / (double) mTotalPossibleRolls)
-						* 100d + " %");
+		System.out.println("So the chance of rolling 5 of a kind is: "
+				+ ((double) m5KindPossible / (double) mTotalPossibleRolls)
+				* 100d + " %");
 	}
 
 	public void statsOf4OfAKind(List<List<Integer>> allRolls) {
@@ -107,12 +142,11 @@ public class DiceRoller {
 		}
 		m4KindPossible = count - m5KindPossible;
 		System.out
-				.println("The amount of 4 of a kind in all the rolls possible: "
+				.println("\nThe amount of 4 of a kind in all the rolls possible: "
 						+ m4KindPossible);
-		System.out
-				.println("So the chance of rolling 4 of a kind is: "
-						+ ((double) m4KindPossible / (double) mTotalPossibleRolls)
-						* 100d + " %");
+		System.out.println("So the chance of rolling 4 of a kind is: "
+				+ ((double) m4KindPossible / (double) mTotalPossibleRolls)
+				* 100d + " %");
 	}
 
 	public void statsOfFullHouse(List<List<Integer>> allRolls) {
@@ -133,12 +167,11 @@ public class DiceRoller {
 		}
 		mFullHousePossible = count;
 		System.out
-				.println("The amount of Full Houses in all the rolls possible: "
+				.println("\nThe amount of Full Houses in all the rolls possible: "
 						+ mFullHousePossible);
-		System.out
-				.println("So the chance of rolling a Full House is: "
-						+ ((double) mFullHousePossible / (double) mTotalPossibleRolls)
-						* 100d + " %");
+		System.out.println("So the chance of rolling a Full House is: "
+				+ ((double) mFullHousePossible / (double) mTotalPossibleRolls)
+				* 100d + " %");
 	}
 
 	public void statsOf2Pairs(List<List<Integer>> allRolls) {
@@ -158,12 +191,11 @@ public class DiceRoller {
 			}
 		}
 		m2PairPossible = count - mFullHousePossible;
-		System.out.println("The amount of 2 pairs in all the rolls possible: "
+		System.out.println("\nThe amount of 2 pairs in all the rolls possible: "
 				+ m2PairPossible);
-		System.out
-				.println("So the chance of rolling 2 pairs is: "
-						+ ((double) m2PairPossible / (double) mTotalPossibleRolls)
-						* 100d + " %");
+		System.out.println("So the chance of rolling 2 pairs is: "
+				+ ((double) m2PairPossible / (double) mTotalPossibleRolls)
+				* 100d + " %");
 	}
 
 	public void statsOfTriples(List<List<Integer>> allRolls) {
@@ -174,12 +206,11 @@ public class DiceRoller {
 			}
 		}
 		m3KindPossible = count - m4KindPossible;
-		System.out.println("The amount of triples in all the rolls possible: "
+		System.out.println("\nThe amount of triples in all the rolls possible: "
 				+ m3KindPossible);
-		System.out
-				.println("So the chance of rolling triples is: "
-						+ ((double) m3KindPossible / (double) mTotalPossibleRolls)
-						* 100d + " %");
+		System.out.println("So the chance of rolling triples is: "
+				+ ((double) m3KindPossible / (double) mTotalPossibleRolls)
+				* 100d + " %");
 	}
 
 	public void statsOfDoubles(List<List<Integer>> allRolls) {
@@ -190,11 +221,11 @@ public class DiceRoller {
 			}
 		}
 		m2KindPossible = count - m3KindPossible;
-		System.out.println("The amount of doubles in all the rolls possible: "
+		System.out.println("\nThe amount of doubles in all the rolls possible: "
 				+ m2KindPossible);
 		System.out.println("So the chance of rolling doubles is: "
-				+ ((double) m2KindPossible / (double) mTotalPossibleRolls) * 100d
-				+ " %");
+				+ ((double) m2KindPossible / (double) mTotalPossibleRolls)
+				* 100d + " %");
 
 	}
 
@@ -223,13 +254,13 @@ public class DiceRoller {
 			}
 		}
 		System.out
-		.println("The amount of small straits in all the rolls possible: "
-				+ count);
-System.out
-		.println("So the chance of rolling a Small Strait is: "
-				+ ((double) count / (double) mTotalPossibleRolls)
-				* 100d + " %");
-		
+				.println("\nThe amount of small straits in all the rolls possible: "
+						+ count);
+		System.out
+				.println("So the chance of rolling a Small Strait is: "
+						+ ((double) count / (double) mTotalPossibleRolls)
+						* 100d + " %");
+
 	}
 
 	private boolean hasMultiplesOf(List<Integer> roll, int amount) {

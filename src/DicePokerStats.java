@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Copyright 2011 Tony Miller
 
@@ -24,8 +26,21 @@ public class DicePokerStats {
 	 *            none really
 	 */
 	public static void main(String[] args) {
-		System.out.println("Rolling 5 dice for you...");
-		DiceRoller roller = new DiceRoller();
+		DiceRoller roller;
+		
+		System.out.print("Enter number of dice you have kept out of 5: ");
+		Scanner scan = new Scanner(System.in);
+		int numberOfDice = scan.nextInt();
+		if(numberOfDice == 2) {
+			System.out.println("\nPlease enter those dice hitting return after each entry:");
+			int dice1 = scan.nextInt();
+			int dice2 = scan.nextInt();
+			
+			roller = new DiceRoller(dice1, dice2);
+		} else {
+			roller = new DiceRoller();
+		}
+		
 		roller.printAllStats();
 	}
 
