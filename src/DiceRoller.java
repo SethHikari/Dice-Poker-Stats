@@ -222,6 +222,8 @@ public class DiceRoller {
 		statsOfTriples(mRollList);
 		statsOfDoubles(mRollList);
 		statsOfStrait(mRollList);
+		
+		System.out.println("\nThis role has a score chance of: " + mScore);
 	}
 
 	public void statsOf5OfAKind(List<List<Integer>> allRolls) {
