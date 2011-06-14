@@ -28,6 +28,7 @@ public class DiceRoller {
 	private long m2KindPossible;
 	private long mFullHousePossible;
 	private long m2PairPossible;
+	private long mStraitPossible;
 	private float mScore = 0f;
 
 	public DiceRoller() {
@@ -231,7 +232,11 @@ public class DiceRoller {
 				count++;
 			}
 		}
+		
 		m5KindPossible = count;
+		float chance = (float)m5KindPossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out
 				.println("\nThe amount of 5 of a kind in all the rolls possible: "
 						+ m5KindPossible);
@@ -248,7 +253,11 @@ public class DiceRoller {
 				count++;
 			}
 		}
+		
 		m4KindPossible = count - m5KindPossible;
+		float chance = (float)m4KindPossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out
 				.println("\nThe amount of 4 of a kind in all the rolls possible: "
 						+ m4KindPossible);
@@ -274,7 +283,11 @@ public class DiceRoller {
 				}
 			}
 		}
+		
 		mFullHousePossible = count;
+		float chance = (float)mFullHousePossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out
 				.println("\nThe amount of Full Houses in all the rolls possible: "
 						+ mFullHousePossible);
@@ -320,7 +333,11 @@ public class DiceRoller {
 				count++;
 			}
 		}
+		
 		m3KindPossible = count - m4KindPossible;
+		float chance = (float)m3KindPossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out.println("\nThe amount of triples in all the rolls possible: "
 				+ m3KindPossible);
 		System.out.println("So the chance of rolling triples is: "
@@ -336,7 +353,11 @@ public class DiceRoller {
 				count++;
 			}
 		}
+		
 		m2KindPossible = count - m3KindPossible;
+		float chance = (float)m2KindPossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out.println("\nThe amount of doubles in all the rolls possible: "
 				+ m2KindPossible);
 		System.out.println("So the chance of rolling doubles is: "
@@ -370,6 +391,11 @@ public class DiceRoller {
 				}
 			}
 		}
+		
+		mStraitPossible = count;
+		float chance = (float)mStraitPossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out
 				.println("\nThe amount of small straits in all the rolls possible: "
 						+ count);
