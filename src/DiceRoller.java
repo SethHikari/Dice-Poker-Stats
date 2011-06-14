@@ -32,6 +32,14 @@ public class DiceRoller {
 	public DiceRoller() {
 		mRollList = roll5Dice();
 	}
+	
+	public DiceRoller(int dice1) {
+		List<List<Integer>> roll4List = roll4Dice();
+		for (List<Integer> roll : roll4List){
+			roll.add(dice1);
+		}
+		mRollList = roll4List;
+	}
 
 	public DiceRoller(int dice1, int dice2) {
 		List<List<Integer>> roll3List = roll3Dice();
@@ -40,6 +48,27 @@ public class DiceRoller {
 			roll.add(dice2);
 		}
 		mRollList = roll3List;
+	}
+	
+	public DiceRoller(int dice1, int dice2, int dice3) {
+		List<List<Integer>> roll2List = roll2Dice();
+		for (List<Integer> roll : roll2List){
+			roll.add(dice1);
+			roll.add(dice2);
+			roll.add(dice3);
+		}
+		mRollList = roll2List;
+	}
+	
+	public DiceRoller(int dice1, int dice2, int dice3, int dice4) {
+		List<List<Integer>> roll1List = roll1Dice();
+		for (List<Integer> roll : roll1List){
+			roll.add(dice1);
+			roll.add(dice2);
+			roll.add(dice3);
+			roll.add(dice4);
+		}
+		mRollList = roll1List;
 	}
 
 	/**
@@ -79,6 +108,35 @@ public class DiceRoller {
 				+ countPossibleRolls);
 		return rollList;
 	}
+	
+	protected List<List<Integer>> roll4Dice() {
+		long countPossibleRolls = 0;
+		// create a list to keep the dice rolls in
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
+		// loop through every possible roll
+		
+			for (int dice2 = 1; dice2 <= 6; dice2++) {
+				for (int dice3 = 1; dice3 <= 6; dice3++) {
+					for (int dice4 = 1; dice4 <= 6; dice4++) {
+						for (int dice5 = 1; dice5 <= 6; dice5++) {
+							// add to the list a new double array of all the
+							// dice so far
+							List<Integer> roll = new ArrayList<Integer>();
+							roll.add(dice2);
+							roll.add(dice3);
+							roll.add(dice4);
+							roll.add(dice5);
+							rollList.add(roll);
+							countPossibleRolls++;
+						}
+					}
+				}
+			}
+		mTotalPossibleRolls = countPossibleRolls;
+		System.out.println("The amount of possible dice rolls: "
+				+ countPossibleRolls);
+		return rollList;
+	}
 
 	protected List<List<Integer>> roll3Dice() {
 		long countPossibleRolls = 0;
@@ -106,7 +164,54 @@ public class DiceRoller {
 				+ countPossibleRolls);
 		return rollList;
 	}
+	
+	protected List<List<Integer>> roll2Dice() {
+		long countPossibleRolls = 0;
+		// create a list to keep the dice rolls in
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
 
+		// loop through every possible roll
+			for (int dice4 = 1; dice4 <= 6; dice4++) {
+				for (int dice5 = 1; dice5 <= 6; dice5++) {
+					// add to the list a new double array of all the
+					// dice so far
+					List<Integer> roll = new ArrayList<Integer>();
+					roll.add(dice4);
+					roll.add(dice5);
+					rollList.add(roll);
+					countPossibleRolls++;
+				}
+			}
+
+
+		mTotalPossibleRolls = countPossibleRolls;
+		System.out.println("The amount of possible dice rolls: "
+				+ countPossibleRolls);
+		return rollList;
+	}
+
+	protected List<List<Integer>> roll1Dice() {
+		long countPossibleRolls = 0;
+		// create a list to keep the dice rolls in
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
+
+		// loop through every possible roll
+				for (int dice5 = 1; dice5 <= 6; dice5++) {
+					// add to the list a new double array of all the
+					// dice so far
+					List<Integer> roll = new ArrayList<Integer>();
+					roll.add(dice5);
+					rollList.add(roll);
+					countPossibleRolls++;
+				}
+
+
+		mTotalPossibleRolls = countPossibleRolls;
+		System.out.println("The amount of possible dice rolls: "
+				+ countPossibleRolls);
+		return rollList;
+	}
+	
 	public void printAllStats() {
 		statsOf5OfAKind(mRollList);
 		statsOf4OfAKind(mRollList);
