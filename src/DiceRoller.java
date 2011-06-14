@@ -28,6 +28,7 @@ public class DiceRoller {
 	private long m2KindPossible;
 	private long mFullHousePossible;
 	private long m2PairPossible;
+	private float mScore = 0f;
 
 	public DiceRoller() {
 		mRollList = roll5Dice();
@@ -223,6 +224,7 @@ public class DiceRoller {
 	}
 
 	public void statsOf5OfAKind(List<List<Integer>> allRolls) {
+		float value = 7f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 5)) {
@@ -239,6 +241,7 @@ public class DiceRoller {
 	}
 
 	public void statsOf4OfAKind(List<List<Integer>> allRolls) {
+		float value = 6f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 4)) {
@@ -255,6 +258,7 @@ public class DiceRoller {
 	}
 
 	public void statsOfFullHouse(List<List<Integer>> allRolls) {
+		float value = 4f;
 		long count = 0;
 		long debug = 0;
 		List<List<Integer>> rolls = new ArrayList<List<Integer>>(allRolls);
@@ -280,6 +284,7 @@ public class DiceRoller {
 	}
 
 	public void statsOf2Pairs(List<List<Integer>> allRolls) {
+		float value = 2f;
 		long count = 0;
 		long debug = 0;
 		List<List<Integer>> rolls = new ArrayList<List<Integer>>(allRolls);
@@ -295,7 +300,11 @@ public class DiceRoller {
 				}
 			}
 		}
+		
 		m2PairPossible = count - mFullHousePossible;
+		float chance = (float)m2PairPossible / (float)mTotalPossibleRolls;
+		mScore = mScore + (chance * value);
+		
 		System.out.println("\nThe amount of 2 pairs in all the rolls possible: "
 				+ m2PairPossible);
 		System.out.println("So the chance of rolling 2 pairs is: "
@@ -304,6 +313,7 @@ public class DiceRoller {
 	}
 
 	public void statsOfTriples(List<List<Integer>> allRolls) {
+		float value = 3f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 3)) {
@@ -319,6 +329,7 @@ public class DiceRoller {
 	}
 
 	public void statsOfDoubles(List<List<Integer>> allRolls) {
+		float value = 1f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
 			if (hasMultiplesOf(roll, 2)) {
@@ -335,6 +346,7 @@ public class DiceRoller {
 	}
 
 	public void statsOfStrait(List<List<Integer>> allRolls) {
+		float value = 5f;
 		long count = 0;
 
 		for (int go = 1; go <= 2; go++) {
