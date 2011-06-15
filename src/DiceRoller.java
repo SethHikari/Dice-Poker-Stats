@@ -228,8 +228,7 @@ public class DiceRoller {
 	}
 
 	public void printStats(long possible, float chance, String scoreType) {
-		System.out.printf("\nThe amount of %s in all the rolls pssible: %i",
-				scoreType, possible);
+		System.out.println("\nThe amount of " + scoreType + " in all the rolls pssible: " + possible);
 	}
 
 	public void statsOf5OfAKind(List<List<Integer>> allRolls) {
