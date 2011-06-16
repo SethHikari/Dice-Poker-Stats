@@ -222,13 +222,11 @@ public class DiceRoller {
 		statsOfStrait(mRollList);
 
 		System.out.println("\nThis role has a score chance of: " + mScore);
-		
-		//test
-		printStats(5,5.5f,"A Test");
 	}
 
 	public void printStats(long possible, float chance, String scoreType) {
 		System.out.println("\nThe amount of " + scoreType + " in all the rolls pssible: " + possible);
+		System.out.println("So the chance of rolling " + scoreType + " is: " + chance * 100f + "%");
 	}
 
 	public void statsOf5OfAKind(List<List<Integer>> allRolls) {
