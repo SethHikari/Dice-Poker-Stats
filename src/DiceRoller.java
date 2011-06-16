@@ -34,10 +34,10 @@ public class DiceRoller {
 	public DiceRoller() {
 		mRollList = roll5Dice();
 	}
-	
+
 	public DiceRoller(int dice1) {
 		List<List<Integer>> roll4List = roll4Dice();
-		for (List<Integer> roll : roll4List){
+		for (List<Integer> roll : roll4List) {
 			roll.add(dice1);
 		}
 		mRollList = roll4List;
@@ -45,26 +45,26 @@ public class DiceRoller {
 
 	public DiceRoller(int dice1, int dice2) {
 		List<List<Integer>> roll3List = roll3Dice();
-		for (List<Integer> roll : roll3List){
+		for (List<Integer> roll : roll3List) {
 			roll.add(dice1);
 			roll.add(dice2);
 		}
 		mRollList = roll3List;
 	}
-	
+
 	public DiceRoller(int dice1, int dice2, int dice3) {
 		List<List<Integer>> roll2List = roll2Dice();
-		for (List<Integer> roll : roll2List){
+		for (List<Integer> roll : roll2List) {
 			roll.add(dice1);
 			roll.add(dice2);
 			roll.add(dice3);
 		}
 		mRollList = roll2List;
 	}
-	
+
 	public DiceRoller(int dice1, int dice2, int dice3, int dice4) {
 		List<List<Integer>> roll1List = roll1Dice();
-		for (List<Integer> roll : roll1List){
+		for (List<Integer> roll : roll1List) {
 			roll.add(dice1);
 			roll.add(dice2);
 			roll.add(dice3);
@@ -110,30 +110,30 @@ public class DiceRoller {
 				+ countPossibleRolls);
 		return rollList;
 	}
-	
+
 	protected List<List<Integer>> roll4Dice() {
 		long countPossibleRolls = 0;
 		// create a list to keep the dice rolls in
 		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
 		// loop through every possible roll
-		
-			for (int dice2 = 1; dice2 <= 6; dice2++) {
-				for (int dice3 = 1; dice3 <= 6; dice3++) {
-					for (int dice4 = 1; dice4 <= 6; dice4++) {
-						for (int dice5 = 1; dice5 <= 6; dice5++) {
-							// add to the list a new double array of all the
-							// dice so far
-							List<Integer> roll = new ArrayList<Integer>();
-							roll.add(dice2);
-							roll.add(dice3);
-							roll.add(dice4);
-							roll.add(dice5);
-							rollList.add(roll);
-							countPossibleRolls++;
-						}
+
+		for (int dice2 = 1; dice2 <= 6; dice2++) {
+			for (int dice3 = 1; dice3 <= 6; dice3++) {
+				for (int dice4 = 1; dice4 <= 6; dice4++) {
+					for (int dice5 = 1; dice5 <= 6; dice5++) {
+						// add to the list a new double array of all the
+						// dice so far
+						List<Integer> roll = new ArrayList<Integer>();
+						roll.add(dice2);
+						roll.add(dice3);
+						roll.add(dice4);
+						roll.add(dice5);
+						rollList.add(roll);
+						countPossibleRolls++;
 					}
 				}
 			}
+		}
 		mTotalPossibleRolls = countPossibleRolls;
 		System.out.println("The amount of possible dice rolls: "
 				+ countPossibleRolls);
@@ -166,25 +166,24 @@ public class DiceRoller {
 				+ countPossibleRolls);
 		return rollList;
 	}
-	
+
 	protected List<List<Integer>> roll2Dice() {
 		long countPossibleRolls = 0;
 		// create a list to keep the dice rolls in
 		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
 
 		// loop through every possible roll
-			for (int dice4 = 1; dice4 <= 6; dice4++) {
-				for (int dice5 = 1; dice5 <= 6; dice5++) {
-					// add to the list a new double array of all the
-					// dice so far
-					List<Integer> roll = new ArrayList<Integer>();
-					roll.add(dice4);
-					roll.add(dice5);
-					rollList.add(roll);
-					countPossibleRolls++;
-				}
+		for (int dice4 = 1; dice4 <= 6; dice4++) {
+			for (int dice5 = 1; dice5 <= 6; dice5++) {
+				// add to the list a new double array of all the
+				// dice so far
+				List<Integer> roll = new ArrayList<Integer>();
+				roll.add(dice4);
+				roll.add(dice5);
+				rollList.add(roll);
+				countPossibleRolls++;
 			}
-
+		}
 
 		mTotalPossibleRolls = countPossibleRolls;
 		System.out.println("The amount of possible dice rolls: "
@@ -198,22 +197,21 @@ public class DiceRoller {
 		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
 
 		// loop through every possible roll
-				for (int dice5 = 1; dice5 <= 6; dice5++) {
-					// add to the list a new double array of all the
-					// dice so far
-					List<Integer> roll = new ArrayList<Integer>();
-					roll.add(dice5);
-					rollList.add(roll);
-					countPossibleRolls++;
-				}
-
+		for (int dice5 = 1; dice5 <= 6; dice5++) {
+			// add to the list a new double array of all the
+			// dice so far
+			List<Integer> roll = new ArrayList<Integer>();
+			roll.add(dice5);
+			rollList.add(roll);
+			countPossibleRolls++;
+		}
 
 		mTotalPossibleRolls = countPossibleRolls;
 		System.out.println("The amount of possible dice rolls: "
 				+ countPossibleRolls);
 		return rollList;
 	}
-	
+
 	public void printAllStats() {
 		statsOf5OfAKind(mRollList);
 		statsOf4OfAKind(mRollList);
@@ -222,8 +220,15 @@ public class DiceRoller {
 		statsOfTriples(mRollList);
 		statsOfDoubles(mRollList);
 		statsOfStrait(mRollList);
-		
+
 		System.out.println("\nThis role has a score chance of: " + mScore);
+		
+		//test
+		printStats(5,5.5f,"A Test");
+	}
+
+	public void printStats(long possible, float chance, String scoreType) {
+		System.out.println("\nThe amount of " + scoreType + " in all the rolls pssible: " + possible);
 	}
 
 	public void statsOf5OfAKind(List<List<Integer>> allRolls) {
@@ -234,11 +239,11 @@ public class DiceRoller {
 				count++;
 			}
 		}
-		
+
 		m5KindPossible = count;
-		float chance = (float)m5KindPossible / (float)mTotalPossibleRolls;
+		float chance = (float) m5KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
+
 		System.out
 				.println("\nThe amount of 5 of a kind in all the rolls possible: "
 						+ m5KindPossible);
@@ -255,11 +260,11 @@ public class DiceRoller {
 				count++;
 			}
 		}
-		
+
 		m4KindPossible = count - m5KindPossible;
-		float chance = (float)m4KindPossible / (float)mTotalPossibleRolls;
+		float chance = (float) m4KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
+
 		System.out
 				.println("\nThe amount of 4 of a kind in all the rolls possible: "
 						+ m4KindPossible);
@@ -285,11 +290,11 @@ public class DiceRoller {
 				}
 			}
 		}
-		
+
 		mFullHousePossible = count;
-		float chance = (float)mFullHousePossible / (float)mTotalPossibleRolls;
+		float chance = (float) mFullHousePossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
+
 		System.out
 				.println("\nThe amount of Full Houses in all the rolls possible: "
 						+ mFullHousePossible);
@@ -315,13 +320,14 @@ public class DiceRoller {
 				}
 			}
 		}
-		
+
 		m2PairPossible = count - mFullHousePossible;
-		float chance = (float)m2PairPossible / (float)mTotalPossibleRolls;
+		float chance = (float) m2PairPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
-		System.out.println("\nThe amount of 2 pairs in all the rolls possible: "
-				+ m2PairPossible);
+
+		System.out
+				.println("\nThe amount of 2 pairs in all the rolls possible: "
+						+ m2PairPossible);
 		System.out.println("So the chance of rolling 2 pairs is: "
 				+ ((double) m2PairPossible / (double) mTotalPossibleRolls)
 				* 100d + " %");
@@ -335,13 +341,14 @@ public class DiceRoller {
 				count++;
 			}
 		}
-		
+
 		m3KindPossible = count - m4KindPossible;
-		float chance = (float)m3KindPossible / (float)mTotalPossibleRolls;
+		float chance = (float) m3KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
-		System.out.println("\nThe amount of triples in all the rolls possible: "
-				+ m3KindPossible);
+
+		System.out
+				.println("\nThe amount of triples in all the rolls possible: "
+						+ m3KindPossible);
 		System.out.println("So the chance of rolling triples is: "
 				+ ((double) m3KindPossible / (double) mTotalPossibleRolls)
 				* 100d + " %");
@@ -355,13 +362,14 @@ public class DiceRoller {
 				count++;
 			}
 		}
-		
+
 		m2KindPossible = count - m3KindPossible;
-		float chance = (float)m2KindPossible / (float)mTotalPossibleRolls;
+		float chance = (float) m2KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
-		System.out.println("\nThe amount of doubles in all the rolls possible: "
-				+ m2KindPossible);
+
+		System.out
+				.println("\nThe amount of doubles in all the rolls possible: "
+						+ m2KindPossible);
 		System.out.println("So the chance of rolling doubles is: "
 				+ ((double) m2KindPossible / (double) mTotalPossibleRolls)
 				* 100d + " %");
@@ -393,11 +401,11 @@ public class DiceRoller {
 				}
 			}
 		}
-		
+
 		mStraitPossible = count;
-		float chance = (float)mStraitPossible / (float)mTotalPossibleRolls;
+		float chance = (float) mStraitPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
-		
+
 		System.out
 				.println("\nThe amount of small straits in all the rolls possible: "
 						+ count);
