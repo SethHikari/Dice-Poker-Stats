@@ -30,6 +30,13 @@ public class DiceRoller {
 	private long m2PairPossible;
 	private long mStraitPossible;
 	private float mScore = 0f;
+	private float mChance2Kind;
+	private float mChance3Kind;
+	private float mChance4Kind;
+	private float mChance5Kind;
+	private float mChanceFullHouse;
+	private float mChanceStrait;
+	private float mChance2Pair;
 
 	public DiceRoller() {
 		mRollList = roll5Dice();
@@ -211,26 +218,27 @@ public class DiceRoller {
 				+ countPossibleRolls);
 		return rollList;
 	}
-	
+
 	public void buildStats() {
-		statsOf5OfAKind(mRollList);
-		statsOf4OfAKind(mRollList);
-		statsOfFullHouse(mRollList);
-		statsOf2Pairs(mRollList);
-		statsOfTriples(mRollList);
-		statsOfDoubles(mRollList);
-		statsOfStrait(mRollList);
+		mChance5Kind = statsOf5OfAKind(mRollList);
+		mChance4Kind = statsOf4OfAKind(mRollList);
+		mChanceFullHouse = statsOfFullHouse(mRollList);
+		mChance2Pair = statsOf2Pairs(mRollList);
+		mChance3Kind = statsOfTriples(mRollList);
+		mChance2Kind = statsOfDoubles(mRollList);
+		mChanceStrait = statsOfStrait(mRollList);
 	}
 
 	public void printAllStats() {
-		printStats(m5KindPossible, statsOf5OfAKind(mRollList), "5 of a Kind");
-		printStats(m4KindPossible, statsOf4OfAKind(mRollList), "4 of a Kind");
-		printStats(m3KindPossible, statsOfTriples(mRollList), "3 of a Kind");
-		printStats(m2KindPossible, statsOfDoubles(mRollList), "2 of a Kind");
-		printStats(mStraitPossible, statsOfStrait(mRollList), "Small Strait");
-		printStats(mFullHousePossible, statsOfFullHouse(mRollList),
-				"Full House");
-		printStats(m2PairPossible, statsOf2Pairs(mRollList), "2 Pairs");
+		buildStats();
+		
+		printStats(m5KindPossible, mChance5Kind, "5 of a Kind");
+		printStats(m4KindPossible, mChance4Kind, "4 of a Kind");
+		printStats(m3KindPossible, mChance3Kind, "3 of a Kind");
+		printStats(m2KindPossible, mChance2Kind, "2 of a Kind");
+		printStats(mStraitPossible, mChanceStrait, "Small Strait");
+		printStats(mFullHousePossible, mChanceFullHouse, "Full House");
+		printStats(m2PairPossible, mChance2Pair, "2 Pairs");
 
 		System.out.println("\nThis role has a score chance of: " + mScore);
 	}
