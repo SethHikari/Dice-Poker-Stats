@@ -213,13 +213,8 @@ public class DiceRoller {
 	}
 
 	public void printAllStats() {
-		statsOf5OfAKind(mRollList);
-		statsOf4OfAKind(mRollList);
-		statsOfFullHouse(mRollList);
-		statsOf2Pairs(mRollList);
-		statsOfTriples(mRollList);
-		statsOfDoubles(mRollList);
-		statsOfStrait(mRollList);
+		printStats(m5KindPossible, statsOf5OfAKind(mRollList), "5 of a Kind");
+		printStats(m4KindPossible, statsOf4OfAKind(mRollList), "4 of a Kind");
 
 		System.out.println("\nThis role has a score chance of: " + mScore);
 	}
@@ -229,7 +224,7 @@ public class DiceRoller {
 		System.out.println("So the chance of rolling " + scoreType + " is: " + chance * 100f + "%");
 	}
 
-	public void statsOf5OfAKind(List<List<Integer>> allRolls) {
+	public float statsOf5OfAKind(List<List<Integer>> allRolls) {
 		float value = 7f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
@@ -242,15 +237,10 @@ public class DiceRoller {
 		float chance = (float) m5KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of 5 of a kind in all the rolls possible: "
-						+ m5KindPossible);
-		System.out.println("So the chance of rolling 5 of a kind is: "
-				+ ((double) m5KindPossible / (double) mTotalPossibleRolls)
-				* 100d + " %");
+		return chance;
 	}
 
-	public void statsOf4OfAKind(List<List<Integer>> allRolls) {
+	public float statsOf4OfAKind(List<List<Integer>> allRolls) {
 		float value = 6f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
@@ -263,15 +253,10 @@ public class DiceRoller {
 		float chance = (float) m4KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of 4 of a kind in all the rolls possible: "
-						+ m4KindPossible);
-		System.out.println("So the chance of rolling 4 of a kind is: "
-				+ ((double) m4KindPossible / (double) mTotalPossibleRolls)
-				* 100d + " %");
+		return chance;
 	}
 
-	public void statsOfFullHouse(List<List<Integer>> allRolls) {
+	public float statsOfFullHouse(List<List<Integer>> allRolls) {
 		float value = 4f;
 		long count = 0;
 		long debug = 0;
@@ -293,15 +278,10 @@ public class DiceRoller {
 		float chance = (float) mFullHousePossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of Full Houses in all the rolls possible: "
-						+ mFullHousePossible);
-		System.out.println("So the chance of rolling a Full House is: "
-				+ ((double) mFullHousePossible / (double) mTotalPossibleRolls)
-				* 100d + " %");
+		return chance;
 	}
 
-	public void statsOf2Pairs(List<List<Integer>> allRolls) {
+	public float statsOf2Pairs(List<List<Integer>> allRolls) {
 		float value = 2f;
 		long count = 0;
 		long debug = 0;
@@ -323,15 +303,10 @@ public class DiceRoller {
 		float chance = (float) m2PairPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of 2 pairs in all the rolls possible: "
-						+ m2PairPossible);
-		System.out.println("So the chance of rolling 2 pairs is: "
-				+ ((double) m2PairPossible / (double) mTotalPossibleRolls)
-				* 100d + " %");
+		return chance;
 	}
 
-	public void statsOfTriples(List<List<Integer>> allRolls) {
+	public float statsOfTriples(List<List<Integer>> allRolls) {
 		float value = 3f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
@@ -344,15 +319,10 @@ public class DiceRoller {
 		float chance = (float) m3KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of triples in all the rolls possible: "
-						+ m3KindPossible);
-		System.out.println("So the chance of rolling triples is: "
-				+ ((double) m3KindPossible / (double) mTotalPossibleRolls)
-				* 100d + " %");
+		return chance;
 	}
 
-	public void statsOfDoubles(List<List<Integer>> allRolls) {
+	public float statsOfDoubles(List<List<Integer>> allRolls) {
 		float value = 1f;
 		long count = 0;
 		for (List<Integer> roll : allRolls) {
@@ -365,16 +335,11 @@ public class DiceRoller {
 		float chance = (float) m2KindPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of doubles in all the rolls possible: "
-						+ m2KindPossible);
-		System.out.println("So the chance of rolling doubles is: "
-				+ ((double) m2KindPossible / (double) mTotalPossibleRolls)
-				* 100d + " %");
+		return chance;
 
 	}
 
-	public void statsOfStrait(List<List<Integer>> allRolls) {
+	public float statsOfStrait(List<List<Integer>> allRolls) {
 		float value = 5f;
 		long count = 0;
 
@@ -404,13 +369,7 @@ public class DiceRoller {
 		float chance = (float) mStraitPossible / (float) mTotalPossibleRolls;
 		mScore = mScore + (chance * value);
 
-		System.out
-				.println("\nThe amount of small straits in all the rolls possible: "
-						+ count);
-		System.out
-				.println("So the chance of rolling a Small Strait is: "
-						+ ((double) count / (double) mTotalPossibleRolls)
-						* 100d + " %");
+		return chance;
 
 	}
 
