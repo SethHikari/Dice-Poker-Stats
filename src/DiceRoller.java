@@ -211,17 +211,35 @@ public class DiceRoller {
 				+ countPossibleRolls);
 		return rollList;
 	}
+	
+	public void buildStats() {
+		statsOf5OfAKind(mRollList);
+		statsOf4OfAKind(mRollList);
+		statsOfFullHouse(mRollList);
+		statsOf2Pairs(mRollList);
+		statsOfTriples(mRollList);
+		statsOfDoubles(mRollList);
+		statsOfStrait(mRollList);
+	}
 
 	public void printAllStats() {
 		printStats(m5KindPossible, statsOf5OfAKind(mRollList), "5 of a Kind");
 		printStats(m4KindPossible, statsOf4OfAKind(mRollList), "4 of a Kind");
+		printStats(m3KindPossible, statsOfTriples(mRollList), "3 of a Kind");
+		printStats(m2KindPossible, statsOfDoubles(mRollList), "2 of a Kind");
+		printStats(mStraitPossible, statsOfStrait(mRollList), "Small Strait");
+		printStats(mFullHousePossible, statsOfFullHouse(mRollList),
+				"Full House");
+		printStats(m2PairPossible, statsOf2Pairs(mRollList), "2 Pairs");
 
 		System.out.println("\nThis role has a score chance of: " + mScore);
 	}
 
 	public void printStats(long possible, float chance, String scoreType) {
-		System.out.println("\nThe amount of " + scoreType + " in all the rolls pssible: " + possible);
-		System.out.println("So the chance of rolling " + scoreType + " is: " + chance * 100f + "%");
+		System.out.println("\nThe amount of " + scoreType
+				+ " in all the rolls pssible: " + possible);
+		System.out.println("So the chance of rolling " + scoreType + " is: "
+				+ chance * 100f + "%");
 	}
 
 	public float statsOf5OfAKind(List<List<Integer>> allRolls) {
