@@ -33,7 +33,17 @@ public class DicePokerStats {
 		System.out.print("Enter number of dice you have kept out of 5: ");
 		Scanner scan = new Scanner(System.in);
 		int numberOfDice = scan.nextInt();
-		if(numberOfDice == 4){
+		if (numberOfDice == 5) {
+			System.out.println("\nPlease enter those dice hitting return after each entry:");
+			int dice1 = scan.nextInt();
+			int dice2 = scan.nextInt();
+			int dice3 = scan.nextInt();
+			int dice4 = scan.nextInt();
+			int dice5 = scan.nextInt();
+			
+			roller = new DiceRoller(dice1, dice2, dice3, dice4, dice5); 
+		}
+		else if(numberOfDice == 4){
 			System.out.println("\nPlease enter those dice hitting return after each entry:");
 			int dice1 = scan.nextInt();
 			int dice2 = scan.nextInt();
@@ -69,12 +79,13 @@ public class DicePokerStats {
 		
 		Ai ai = new Ai();
 		List<Integer> dice = new ArrayList<Integer>();
-		dice.add(5);
-		dice.add(5);
-		dice.add(1);
 		dice.add(1);
 		dice.add(2);
-		ai.create4(dice);
+		dice.add(3);
+		dice.add(4);
+		dice.add(5);
+		ai.setDice(dice);
+		ai.testing4Dice();
 	}
 
 }

@@ -79,6 +79,18 @@ public class DiceRoller {
 		}
 		mRollList = roll1List;
 	}
+	
+	public DiceRoller(int dice1, int dice2, int dice3, int dice4, int dice5) {
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
+		List<Integer> dice = new ArrayList<Integer>();
+		dice.add(dice1);
+		dice.add(dice2);
+		dice.add(dice3);
+		dice.add(dice4);
+		dice.add(dice5);
+		rollList.add(dice);
+		mRollList = rollList;
+	}
 
 	/**
 	 * Creates a list of every possible 5 dice combination, and how many
@@ -414,5 +426,9 @@ public class DiceRoller {
 			}
 		}
 		return false;
+	}
+	
+	public float getScore() {
+		return mScore;
 	}
 }
