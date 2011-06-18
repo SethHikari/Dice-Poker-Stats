@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -64,6 +66,15 @@ public class DicePokerStats {
 		}
 		
 		roller.printAllStats();
+		
+		Ai ai = new Ai();
+		List<Integer> dice = new ArrayList<Integer>();
+		dice.add(5);
+		dice.add(5);
+		dice.add(1);
+		dice.add(1);
+		dice.add(2);
+		ai.create4(dice);
 	}
 
 }
