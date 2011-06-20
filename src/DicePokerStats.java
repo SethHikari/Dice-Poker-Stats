@@ -84,7 +84,8 @@ public class DicePokerStats {
 		dice.add(3);
 		dice.add(4);
 		dice.add(5);
-		ai.create3(dice);
+		ai.setDice(dice);
+		ai.testing3Dice();
 	}
 
 }

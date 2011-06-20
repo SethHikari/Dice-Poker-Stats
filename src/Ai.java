@@ -29,6 +29,23 @@ public class Ai {
 		}
 		return bestDice;
 	}
+	
+	public List<Integer> testing3Dice() {
+		List<List<Integer>> tempDiceList = create3(mDice);
+		float highestScore = 0f;
+		List<Integer> bestDice = null;
+		for (List<Integer> dice : tempDiceList) {
+			DiceRoller roller = new DiceRoller(dice.get(0), dice.get(1), dice
+					.get(2));
+			roller.buildStats();
+			float score = roller.getScore();
+			if (score > highestScore) {
+				highestScore = score;
+				bestDice = dice;
+			}
+		}
+		return bestDice;
+	}
 
 	public List<List<Integer>> create4(List<Integer> dice) {
 		List<List<Integer>> permutations = new ArrayList<List<Integer>>();
