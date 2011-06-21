@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Ai {
 	private List<Integer> mDice;
-	private List<List<Integer>> mDiceList;
 
 	public Ai() {
 
@@ -29,8 +28,25 @@ public class Ai {
 		}
 		return bestDice;
 	}
-	
+
 	public List<Integer> testing3Dice() {
+		List<List<Integer>> tempDiceList = create3(mDice);
+		float highestScore = 0f;
+		List<Integer> bestDice = null;
+		for (List<Integer> dice : tempDiceList) {
+			DiceRoller roller = new DiceRoller(dice.get(0), dice.get(1), dice
+					.get(2));
+			roller.buildStats();
+			float score = roller.getScore();
+			if (score > highestScore) {
+				highestScore = score;
+				bestDice = dice;
+			}
+		}
+		return bestDice;
+	}
+
+	public List<Integer> testingDice() {
 		List<List<Integer>> tempDiceList = create3(mDice);
 		float highestScore = 0f;
 		List<Integer> bestDice = null;
@@ -81,4 +97,34 @@ public class Ai {
 
 	}
 
+	public List<List<Integer>> create2(List<Integer> dice) {
+		List<List<Integer>> permutations = new ArrayList<List<Integer>>();
+		for (int i = 0; i < dice.size(); i++) {
+			for (int j = i + 1; j < dice.size(); j++) {
+				for (int k = j + 1; k < dice.size(); k++) {
+					List<Integer> includedPermutation = new ArrayList<Integer>();
+					for (int l = 0; l < dice.size(); l++) {
+						if (l != i && l != j && l != k) {
+							includedPermutation.add(dice.get(k));
+						}
+					}
+					permutations.add(includedPermutation);
+				}
+
+			}
+		}
+
+		return permutations;
+
+	}
+	
+	public List<List<Integer>> create1(List<Integer> dice) {
+		List<List<Integer>> permutations = new ArrayList<List<Integer>>();
+		for(int di : dice) {
+			List<Integer> includedPermutation = new ArrayList<Integer>();
+			includedPermutation.add(di);
+			permutations.add(includedPermutation);
+		}
+		return permutations;
+	}
 }
