@@ -79,7 +79,7 @@ public class DiceRoller {
 		}
 		mRollList = roll1List;
 	}
-	
+
 	public DiceRoller(int dice1, int dice2, int dice3, int dice4, int dice5) {
 		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
 		List<Integer> dice = new ArrayList<Integer>();
@@ -88,6 +88,26 @@ public class DiceRoller {
 		dice.add(dice3);
 		dice.add(dice4);
 		dice.add(dice5);
+		rollList.add(dice);
+		mRollList = rollList;
+	}
+
+	public DiceRoller(List<Integer> diceList) {
+		List<List<Integer>> rollList = new ArrayList<List<Integer>>();
+		List<Integer> dice = new ArrayList<Integer>();
+
+		switch (diceList.size()) {
+		case 5:
+			dice.add(diceList.get(4));
+		case 4:
+			dice.add(diceList.get(3));
+		case 3:
+			dice.add(diceList.get(2));
+		case 2:
+			dice.add(diceList.get(1));
+		case 1:
+			dice.add(diceList.get(0));
+		}
 		rollList.add(dice);
 		mRollList = rollList;
 	}
@@ -243,7 +263,7 @@ public class DiceRoller {
 
 	public void printAllStats() {
 		buildStats();
-		
+
 		printStats(m5KindPossible, mChance5Kind, "5 of a Kind");
 		printStats(m4KindPossible, mChance4Kind, "4 of a Kind");
 		printStats(m3KindPossible, mChance3Kind, "3 of a Kind");
@@ -427,7 +447,7 @@ public class DiceRoller {
 		}
 		return false;
 	}
-	
+
 	public float getScore() {
 		return mScore;
 	}
