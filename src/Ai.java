@@ -3,22 +3,30 @@ import java.util.List;
 
 public class Ai {
 	private List<Integer> mDice;
+	private List<List<Integer>> mDiceList;
 
 	public Ai() {
-
+		mDiceList = new ArrayList<List<Integer>>();
 	}
 
 	public void setDice(List<Integer> dice) {
 		mDice = dice;
+		mDiceList.add(dice);
+	}
+	
+	protected void createPossibleList() {
+		create4(mDice);
+		create3(mDice);
+		create2(mDice);
+		create1(mDice);
 	}
 
 	public List<Integer> testingDice() {
-		List<List<Integer>> tempDiceList = create3(mDice);
+		createPossibleList();
 		float highestScore = 0f;
 		List<Integer> bestDice = null;
-		for (List<Integer> dice : tempDiceList) {
-			DiceRoller roller = new DiceRoller(dice.get(0), dice.get(1), dice
-					.get(2));
+		for (List<Integer> dice : mDiceList) {
+			DiceRoller roller = new DiceRoller(dice);
 			roller.buildStats();
 			float score = roller.getScore();
 			if (score > highestScore) {
@@ -41,6 +49,7 @@ public class Ai {
 			permutations.add(includedPermutation);
 		}
 
+		mDiceList.addAll(permutations);
 		return permutations;
 	}
 
@@ -58,7 +67,7 @@ public class Ai {
 			}
 
 		}
-
+		mDiceList.addAll(permutations);
 		return permutations;
 
 	}
@@ -79,7 +88,7 @@ public class Ai {
 
 			}
 		}
-
+		mDiceList.addAll(permutations);
 		return permutations;
 
 	}
@@ -91,6 +100,7 @@ public class Ai {
 			includedPermutation.add(di);
 			permutations.add(includedPermutation);
 		}
+		mDiceList.addAll(permutations);
 		return permutations;
 	}
 }

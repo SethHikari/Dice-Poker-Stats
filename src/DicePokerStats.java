@@ -80,12 +80,12 @@ public class DicePokerStats {
 		Ai ai = new Ai();
 		List<Integer> dice = new ArrayList<Integer>();
 		dice.add(1);
-		dice.add(2);
-		dice.add(3);
+		dice.add(1);
+		dice.add(1);
 		dice.add(4);
 		dice.add(5);
 		ai.setDice(dice);
-		ai.testing3Dice();
+		ai.testingDice();
 	}
 
 }
