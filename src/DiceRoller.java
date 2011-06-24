@@ -145,8 +145,6 @@ public class DiceRoller {
 			}
 		}
 		mTotalPossibleRolls = countPossibleRolls;
-		System.out.println("The amount of possible dice rolls: "
-				+ countPossibleRolls);
 		return rollList;
 	}
 
@@ -174,8 +172,6 @@ public class DiceRoller {
 			}
 		}
 		mTotalPossibleRolls = countPossibleRolls;
-		System.out.println("The amount of possible dice rolls: "
-				+ countPossibleRolls);
 		return rollList;
 	}
 
@@ -201,8 +197,6 @@ public class DiceRoller {
 		}
 
 		mTotalPossibleRolls = countPossibleRolls;
-		System.out.println("The amount of possible dice rolls: "
-				+ countPossibleRolls);
 		return rollList;
 	}
 
@@ -225,8 +219,6 @@ public class DiceRoller {
 		}
 
 		mTotalPossibleRolls = countPossibleRolls;
-		System.out.println("The amount of possible dice rolls: "
-				+ countPossibleRolls);
 		return rollList;
 	}
 
@@ -246,8 +238,6 @@ public class DiceRoller {
 		}
 
 		mTotalPossibleRolls = countPossibleRolls;
-		System.out.println("The amount of possible dice rolls: "
-				+ countPossibleRolls);
 		return rollList;
 	}
 
