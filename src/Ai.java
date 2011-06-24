@@ -12,40 +12,6 @@ public class Ai {
 		mDice = dice;
 	}
 
-	public List<Integer> testing4Dice() {
-		List<List<Integer>> tempDiceList = create4(mDice);
-		float highestScore = 0f;
-		List<Integer> bestDice = null;
-		for (List<Integer> dice : tempDiceList) {
-			DiceRoller roller = new DiceRoller(dice.get(0), dice.get(1), dice
-					.get(2), dice.get(3));
-			roller.buildStats();
-			float score = roller.getScore();
-			if (score > highestScore) {
-				highestScore = score;
-				bestDice = dice;
-			}
-		}
-		return bestDice;
-	}
-
-	public List<Integer> testing3Dice() {
-		List<List<Integer>> tempDiceList = create3(mDice);
-		float highestScore = 0f;
-		List<Integer> bestDice = null;
-		for (List<Integer> dice : tempDiceList) {
-			DiceRoller roller = new DiceRoller(dice.get(0), dice.get(1), dice
-					.get(2));
-			roller.buildStats();
-			float score = roller.getScore();
-			if (score > highestScore) {
-				highestScore = score;
-				bestDice = dice;
-			}
-		}
-		return bestDice;
-	}
-
 	public List<Integer> testingDice() {
 		List<List<Integer>> tempDiceList = create3(mDice);
 		float highestScore = 0f;
@@ -117,10 +83,10 @@ public class Ai {
 		return permutations;
 
 	}
-	
+
 	public List<List<Integer>> create1(List<Integer> dice) {
 		List<List<Integer>> permutations = new ArrayList<List<Integer>>();
-		for(int di : dice) {
+		for (int di : dice) {
 			List<Integer> includedPermutation = new ArrayList<Integer>();
 			includedPermutation.add(di);
 			permutations.add(includedPermutation);
